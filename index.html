@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquiry Automation</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+
+        <div class="hero-content">
+            <span class="tag">SMART ENQUIRY AUTOMATION</span>
+
+            <h1>
+                Automate Enquiries.
+                <span>Simplify Communication.</span>
+            </h1>
+
+            <p>
+                Manage customer enquiries effortlessly.
+                Automate acknowledgements, reduce repetitive work
+                and keep every enquiry organized in one place.
+            </p>
+
+            <a href="#enquiry" class="hero-btn">
+                Get Started <span>→</span>
+            </a>
+
+            <a href="#admin-workflow" class="hero-btn">
+    Start Workflow <span>→</span>
+   </a>
+        </div>
+
+        <!-- ORIGINAL IMAGE -->
+        <div class="hero-visual">
+            <div class="visual-glow"></div>
+
+            <img
+                class="img_cls"
+                src="https://images.openai.com/static-rsc-4/FiMSWqiTHv5xQcaS_iEnGFeNhzFHktFmB1a_FQYrA1L69v7KB8BARGceV22Y1h2FhNV8PtdrgidyBvA4OZk1alt4xqs_F-g7mgacY5IA-JksNiOOUlxHRX1MgWjUxI9J07Ajo4408gh4i1F7Y_RGGxPsrescDS63xctnKvFeO2j9b3fHOsXssHct2nvu2ujc?purpose=fullsize"
+                alt="Enquiry Automation Illustration"
+            >
+        </div>
+
+    </section>
+
+
+    <!-- WORKFLOW SECTION -->
+    <section class="workflow-section" id="workflow">
+
+        <div class="section-heading reveal">
+            <span class="tag">THE PROCESS</span>
+            <h2>How It <span>Works</span></h2>
+            <p>
+                A simple automated process that takes an enquiry
+                from submission to acknowledgement.
+            </p>
+        </div>
+
+        <div class="workflow-container">
+
+            <div class="workflow-line"></div>
+
+            <div class="workflow-step reveal">
+                <div class="step-number">01</div>
+                <div class="step-icon">📝</div>
+                <h3>Enquiry Received</h3>
+                <p>
+                    A customer submits their details through
+                    the enquiry form.
+                </p>
+                <span class="step-label">FORM SUBMISSION</span>
+            </div>
+
+            <div class="workflow-step reveal">
+                <div class="step-number">02</div>
+                <div class="step-icon">⚙️</div>
+                <h3>Data Processing</h3>
+                <p>
+                    n8n receives the submitted information
+                    and validates the required fields.
+                </p>
+                <span class="step-label">FLASK WEBHOOK</span>
+            </div>
+
+            <div class="workflow-step reveal">
+                <div class="step-number">03</div>
+                <div class="step-icon">🔍</div>
+                <h3>Duplicate Check</h3>
+                <p>
+                    The system checks whether an acknowledgement
+                    has already been sent.
+                </p>
+                <span class="step-label">VALIDATION</span>
+            </div>
+
+            <div class="workflow-step reveal">
+                <div class="step-number">04</div>
+                <div class="step-icon">📧</div>
+                <h3>Email Automation</h3>
+                <p>
+                    n8n triggers an acknowledgement email
+                    if one has not already been sent.
+                </p>
+                <span class="step-label">N8N AUTOMATION</span>
+            </div>
+
+            <div class="workflow-step reveal">
+                <div class="step-number">05</div>
+                <div class="step-icon">📊</div>
+                <h3>Status Tracking</h3>
+                <p>
+                    Enquiry and email statuses are recorded
+                    for the internal dashboard.
+                </p>
+                <span class="step-label">DATABASE</span>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ENQUIRY FORM SECTION -->
+    <section class="enquiry-section" id="enquiry">
+
+        <div class="form-container reveal">
+
+            <div class="form-heading">
+                <span class="tag">GET IN TOUCH</span>
+                <h2>Let's Discuss <span>Your Project</span></h2>
+                <p>
+                    Share your requirements with us.
+                    We'll get back to you as soon as possible.
+                </p>
+            </div>
+
+            <form class="enquiry-form" id="enquiryForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName"
+                            name="firstName" placeholder="Enter first name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName"
+                            name="lastName" placeholder="Enter last name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email"
+                            name="email" placeholder="example@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact">Contact Number *</label>
+                        <input type="tel" id="contact"
+                            name="contact" placeholder="Enter contact number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Company / Business Name</label>
+                        <input type="text" id="company"
+                            name="company" placeholder="Enter business name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <input type="text" id="city"
+                            name="city" placeholder="Enter your city" required>
+                    </div>
+
+                </div>
+                
+
+                <!-- ENQUIRY TYPE AND BUDGET -->
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="enquiryType">Enquiry Type *</label>
+
+                        <select id="enquiryType" name="enquiryType" required>
+                            <option value="">Select enquiry type</option>
+                            <option value="General Enquiry">General Enquiry</option>
+                            <option value="Project Requirement">Project Requirement</option>
+                            <option value="Partnership">Partnership</option>
+                            <option value="Support">Support</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    Submit Enquiry <span>→</span>
+                </button>
+
+                <p class="form-note">
+                    Your information will be used to respond to your enquiry.
+                </p>
+
+            </form>
+        </div>
+        <!-- START WORKFLOW SECTION -->
+<section class="workflow-section" id="admin-workflow">
+
+    <div class="form-container">
+        <div class="form-heading">
+            <span class="tag">ADMIN CONTROL</span>
+            <h2>Start <span>Email Workflow</span></h2>
+            <p>Enter your n8n webhook URL to process pending enquiries.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="webhookUrl">n8n Webhook URL</label>
+            <input
+                type="url"
+                id="webhookUrl"
+                placeholder="Enter webhook URL"
+                required
+            >
+        </div>
+
+        <button type="button" class="submit-btn" id="startWorkflowBtn">
+            Start Workflow →
+        </button>
+    </div>
+
+</section>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Enquiry Automation. All rights reserved.</p>
+    </footer>
+
+
+    <!-- ANIMATION AND FRONTEND DEMO SCRIPT -->
+    <script>
+
+        // Scroll reveal animation
+        document.documentElement.classList.add("js-enabled");
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach((entry) => {
+
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                    observer.unobserve(entry.target);
+                }
+
+            });
+
+        }, {
+            threshold: 0.15
+        });
+
+        document.querySelectorAll(".reveal").forEach((element) => {
+            observer.observe(element);
+        });
+
+
+        // Temporary frontend form behaviour
+        
+const enquiryForm = document.getElementById("enquiryForm");
+
+enquiryForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(enquiryForm);
+    const enquiryData = Object.fromEntries(formData.entries());
+
+    try {
+        const response = await fetch(
+            "https://olive293.app.n8n.cloud/webhook/enquiry-submit",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(enquiryData)
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("Submission failed");
+        }
+
+        alert("Your enquiry has been submitted successfully!");
+        enquiryForm.reset();
+
+    } catch (error) {
+        console.error(error);
+        alert("Submission failed. Please try again.");
+    }
+});
+    // Start Email Workflow
+
+const startButton = document.getElementById("startWorkflowBtn");
+
+startButton.addEventListener("click", async function() {
+
+    const webhookUrl = document.getElementById("webhookUrl").value.trim();
+
+    if (!webhookUrl) {
+        alert("Please enter the webhook URL.");
+        return;
+    }
+
+    try {
+        const response = await fetch(webhookUrl, {
+            method: "POST"
+        });
+
+        if (!response.ok) {
+            throw new Error("Workflow failed");
+        }
+
+        alert("Email workflow started successfully!");
+
+    } catch (error) {
+        console.error(error);
+        alert("Unable to start workflow. Check your webhook URL.");
+    }
+
+});
+
+
+    </script>
+
+</body>
+</html>
+
