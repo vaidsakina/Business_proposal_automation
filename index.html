@@ -282,7 +282,7 @@ enquiryForm.addEventListener("submit", async function(event) {
 
     try {
         const response = await fetch(
-            "https://extending-electron-restored-forecast.trycloudflare.com",
+            "https://extending-electron-restored-forecast.trycloudflare.com/webhook/enquiry-submit",
             {
                 method: "POST",
                 headers: {
