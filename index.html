@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,8 +32,8 @@
             </a>
 
             <a href="#admin-workflow" class="hero-btn">
-    Start Workflow <span>→</span>
-   </a>
+                Start Workflow <span>→</span>
+            </a>
         </div>
 
         <!-- ORIGINAL IMAGE -->
@@ -179,7 +180,7 @@
                     </div>
 
                 </div>
-                
+
 
                 <!-- ENQUIRY TYPE AND BUDGET -->
                 <div class="form-grid">
@@ -209,32 +210,28 @@
 
             </form>
         </div>
-        <!-- START WORKFLOW SECTION -->
-<section class="workflow-section" id="admin-workflow">
 
-    <div class="form-container">
-        <div class="form-heading">
-            <span class="tag">ADMIN CONTROL</span>
-            <h2>Start <span>Email Workflow</span></h2>
-            <p>Enter your n8n webhook URL to process pending enquiries.</p>
-        </div>
 
-        <div class="form-group">
-            <label for="webhookUrl">n8n Webhook URL</label>
-            <input
-                type="url"
-                id="webhookUrl"
-                placeholder="Enter webhook URL"
-                required
-            >
-        </div>
+        <!-- ADMIN WORKFLOW SECTION -->
+        <section class="workflow-section" id="admin-workflow">
 
-        <button type="button" class="submit-btn" id="startWorkflowBtn">
-            Start Workflow →
-        </button>
-    </div>
+            <div class="form-container">
+                <div class="form-heading">
+                    <span class="tag">ADMIN CONTROL</span>
+                    <h2>Start <span>Email Workflow</span></h2>
+                    <p>
+                        Click below to process pending enquiries
+                        and send acknowledgement emails.
+                    </p>
+                </div>
 
-</section>
+                <button type="button" class="submit-btn" id="startWorkflowBtn">
+                    Start Workflow →
+                </button>
+            </div>
+
+        </section>
+
     </section>
 
 
@@ -244,7 +241,7 @@
     </footer>
 
 
-    <!-- ANIMATION AND FRONTEND DEMO SCRIPT -->
+    <!-- JAVASCRIPT -->
     <script>
 
         // Scroll reveal animation
@@ -270,74 +267,91 @@
         });
 
 
-        // Temporary frontend form behaviour
-        
-const enquiryForm = document.getElementById("enquiryForm");
+        // CUSTOMER ENQUIRY SUBMISSION
+        const enquiryForm = document.getElementById("enquiryForm");
 
-enquiryForm.addEventListener("submit", async function(event) {
-    event.preventDefault();
+        enquiryForm.addEventListener("submit", async function(event) {
 
-    const formData = new FormData(enquiryForm);
-    const enquiryData = Object.fromEntries(formData.entries());
+            event.preventDefault();
 
-    try {
-        const response = await fetch(
-            "https://extending-electron-restored-forecast.trycloudflare.com/webhook/enquiry-submit",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(enquiryData)
+            const formData = new FormData(enquiryForm);
+            const enquiryData = Object.fromEntries(formData.entries());
+
+            try {
+
+                const response = await fetch(
+                    "https://extending-electron-restored-forecast.trycloudflare.com/webhook/enquiry-submit",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(enquiryData)
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error("Submission failed");
+                }
+
+                alert("Your enquiry has been submitted successfully!");
+                enquiryForm.reset();
+
+            } catch (error) {
+
+                console.error(error);
+                alert("Submission failed. Please try again.");
+
             }
-        );
 
-        if (!response.ok) {
-            throw new Error("Submission failed");
-        }
-
-        alert("Your enquiry has been submitted successfully!");
-        enquiryForm.reset();
-
-    } catch (error) {
-        console.error(error);
-        alert("Submission failed. Please try again.");
-    }
-});
-    // Start Email Workflow
-
-const startButton = document.getElementById("startWorkflowBtn");
-
-startButton.addEventListener("click", async function() {
-
-    const webhookUrl = document.getElementById("webhookUrl").value.trim();
-
-    if (!webhookUrl) {
-        alert("Please enter the webhook URL.");
-        return;
-    }
-
-    try {
-        const response = await fetch(webhookUrl, {
-            method: "POST"
         });
 
-        if (!response.ok) {
-            throw new Error("Workflow failed");
-        }
 
-        alert("Email workflow started successfully!");
+        // ADMIN: START EMAIL WORKFLOW
+        const startButton = document.getElementById("startWorkflowBtn");
 
-    } catch (error) {
-        console.error(error);
-        alert("Unable to start workflow. Check your webhook URL.");
-    }
+        const emailWorkflowWebhook =
+            "https://extending-electron-restored-forecast.trycloudflare.com/webhook/start-email-workflow";
 
-});
+        startButton.addEventListener("click", async function() {
 
+            startButton.disabled = true;
+
+            const originalButtonText = startButton.textContent;
+
+            startButton.textContent = "Starting Workflow...";
+
+            try {
+
+                const response = await fetch(emailWorkflowWebhook, {
+                    method: "POST"
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Workflow request failed: ${response.status}`);
+                }
+
+                alert("Email workflow started successfully!");
+
+            } catch (error) {
+
+                console.error("Email workflow error:", error);
+
+                alert("Unable to start the email workflow. Please check the n8n workflow and try again.");
+
+            } finally {
+
+                startButton.disabled = false;
+
+                startButton.textContent = originalButtonText;
+
+            }
+
+        });
 
     </script>
 
 </body>
 </html>
+
 
