@@ -1,0 +1,623 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Enquiry Automation | Workflow</title>
+
+    <link rel="stylesheet" href="index.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #081426;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        .process-page {
+            min-height: 100vh;
+            padding: 75px 6%;
+            background:
+                radial-gradient(circle at 50% 0%, #123d59 0%, transparent 42%),
+                #081426;
+        }
+
+        /* HEADER */
+
+        .process-header {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+
+        .process-header h1 {
+            font-size: clamp(32px, 5vw, 42px);
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .process-header h1 span {
+            color: var(--cyan, #22d3ee);
+        }
+
+        .process-header p {
+            color: var(--muted, #a7b5c8);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .tag {
+            display: inline-block;
+            color: var(--cyan, #22d3ee);
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+        }
+
+        .process-container {
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        /* ORIGINAL FIVE CARDS */
+
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .process-step {
+            position: relative;
+            background: var(--card, rgba(255,255,255,0.05));
+            border: 1px solid rgba(34, 211, 238, 0.17);
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            min-height: 300px;
+            transition: 0.35s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+            border-color: var(--cyan, #22d3ee);
+            box-shadow: 0 15px 40px rgba(34, 211, 238, 0.1);
+        }
+
+        .step-number {
+            display: inline-block;
+            color: var(--cyan, #22d3ee);
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 22px;
+        }
+
+        .step-icon {
+            width: 55px;
+            height: 55px;
+            margin: 0 auto 22px;
+            display: grid;
+            place-items: center;
+            font-size: 26px;
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 14px;
+        }
+
+        .process-step h2 {
+            font-size: 17px;
+            color: #ffffff;
+            margin: 0 0 13px;
+        }
+
+        .process-step p {
+            color: var(--muted, #a7b5c8);
+            font-size: 13px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .step-label {
+            display: inline-block;
+            color: var(--cyan, #22d3ee);
+            font-size: 9px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-top: 18px;
+        }
+
+        .process-arrow {
+            position: absolute;
+            right: -19px;
+            top: 45%;
+            color: var(--cyan, #22d3ee);
+            font-size: 24px;
+            z-index: 2;
+        }
+
+        /* GOOGLE SHEETS SECTION */
+
+        .sheet-section {
+            margin-top: 65px;
+        }
+
+        .sheet-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sheet-heading h2 {
+            font-size: 27px;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .sheet-heading h2 span {
+            color: var(--cyan, #22d3ee);
+        }
+
+        .sheet-heading p {
+            color: var(--muted, #a7b5c8);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .sheet-card {
+            background: var(--card, rgba(255,255,255,0.05));
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 16px;
+            padding: 22px;
+            overflow: hidden;
+            transition: 0.3s ease;
+        }
+
+        .sheet-card:hover {
+            border-color: var(--cyan, #22d3ee);
+            box-shadow: 0 12px 35px rgba(34, 211, 238, 0.08);
+        }
+
+        .sheet-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sheet-toolbar h3 {
+            color: #ffffff;
+            font-size: 18px;
+            margin: 0 0 8px;
+        }
+
+        .sheet-toolbar p {
+            color: var(--muted, #a7b5c8);
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .refresh-button {
+            background: var(--cyan, #22d3ee);
+            color: #081426;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 19px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .refresh-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(34, 211, 238, 0.2);
+        }
+
+        .sheet-frame-container {
+            width: 100%;
+            overflow: hidden;
+            background: #ffffff;
+            border-radius: 9px;
+        }
+
+        .sheet-frame-container iframe {
+            display: block;
+            width: 100%;
+            height: 650px;
+            border: none;
+            background: #ffffff;
+        }
+
+        /* WORKFLOW NOTE */
+
+        .process-note {
+            max-width: 850px;
+            margin: 45px auto 0;
+            padding: 22px;
+            border-left: 3px solid var(--cyan, #22d3ee);
+            background: rgba(255,255,255,0.045);
+            border-radius: 10px;
+            color: var(--muted, #a7b5c8);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .process-note strong {
+            color: var(--cyan, #22d3ee);
+        }
+
+        /* BACK BUTTON */
+
+        .back-container {
+            text-align: center;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 40px;
+            padding: 13px 24px;
+            border: 1px solid var(--cyan, #22d3ee);
+            border-radius: 8px;
+            color: var(--cyan, #22d3ee);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-4px);
+            background: var(--cyan, #22d3ee);
+            color: #081426;
+            box-shadow: 0 10px 30px rgba(34, 211, 238, 0.2);
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 1000px) {
+            .process-flow {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .process-arrow {
+                display: none;
+            }
+        }
+
+        @media(max-width: 600px) {
+            .process-page {
+                padding: 45px 18px;
+            }
+
+            .process-flow {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .process-step {
+                min-height: auto;
+                padding: 25px 20px;
+            }
+
+            .sheet-card {
+                padding: 13px;
+            }
+
+            .sheet-toolbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .refresh-button {
+                width: 100%;
+            }
+
+            .sheet-frame-container iframe {
+                height: 500px;
+            }
+        }
+
+        @media(prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <main class="process-page">
+
+        <header class="process-header">
+
+            <span class="tag">HOW IT WORKS</span>
+
+            <h1>
+                Enquiry <span>Automation Process</span>
+            </h1>
+
+            <p>
+                Understand how customer enquiries are received,
+                processed, checked, and handled automatically
+                through our workflow.
+            </p>
+
+        </header>
+
+
+        <section class="process-container">
+
+            <!-- ORIGINAL WORKFLOW CARDS -->
+
+            <div class="process-flow">
+
+                <!-- STEP 1 -->
+
+                <div class="process-step">
+
+                    <div class="step-number">01 / INPUT</div>
+
+                    <div class="step-icon">📩</div>
+
+                    <h2>Enquiry Received</h2>
+
+                    <p>
+                        The customer submits the enquiry form with their
+                        contact details, company information, and requirements.
+                    </p>
+
+                    <span class="step-label">FORM SUBMISSION</span>
+
+                    <span class="process-arrow">→</span>
+
+                </div>
+
+
+                <!-- STEP 2 -->
+
+                <div class="process-step">
+
+                    <div class="step-number">02 / PROCESS</div>
+
+                    <div class="step-icon">⚙️</div>
+
+                    <h2>Data Processing</h2>
+
+                    <p>
+                        The n8n webhook receives the submitted information
+                        and processes the enquiry data.
+                    </p>
+
+                    <span class="step-label">N8N WEBHOOK</span>
+
+                    <span class="process-arrow">→</span>
+
+                </div>
+
+
+                <!-- STEP 3 -->
+
+                <div class="process-step">
+
+                    <div class="step-number">03 / VALIDATE</div>
+
+                    <div class="step-icon">🔍</div>
+
+                    <h2>Duplicate Check</h2>
+
+                    <p>
+                        The workflow checks whether an acknowledgement
+                        has already been sent for the enquiry.
+                    </p>
+
+                    <span class="step-label">CONDITION CHECK</span>
+
+                    <span class="process-arrow">→</span>
+
+                </div>
+
+
+                <!-- STEP 4 -->
+
+                <div class="process-step">
+
+                    <div class="step-number">04 / AUTOMATE</div>
+
+                    <div class="step-icon">📧</div>
+
+                    <h2>Email Automation</h2>
+
+                    <p>
+                        An acknowledgement email is automatically
+                        triggered when the enquiry meets the conditions.
+                    </p>
+
+                    <span class="step-label">EMAIL TRIGGER</span>
+
+                    <span class="process-arrow">→</span>
+
+                </div>
+
+
+                <!-- STEP 5 -->
+
+                <div class="process-step">
+
+                    <div class="step-number">05 / TRACK</div>
+
+                    <div class="step-icon">📊</div>
+
+                    <h2>Status Tracking</h2>
+
+                    <p>
+                        Enquiry and email statuses are recorded
+                        for internal monitoring and tracking.
+                    </p>
+
+                    <span class="step-label">RECORD MANAGEMENT</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- GOOGLE SHEETS SECTION BELOW THE CARDS -->
+
+            <section class="sheet-section">
+
+                <div class="sheet-heading">
+
+                    <span class="tag">ADMIN RECORDS</span>
+
+                    <h2>
+                        Enquiry <span>Database</span>
+                    </h2>
+
+                    <p>
+                        View customer enquiries and verify
+                        whether submitted data has been recorded.
+                    </p>
+
+                </div>
+
+
+                <div class="sheet-card">
+
+                    <div class="sheet-toolbar">
+
+                        <div>
+
+                            <h3>📊 Google Sheets Records</h3>
+
+                            <p>
+                                View the latest enquiry submissions
+                            </p>
+
+                        </div>
+
+                        <button
+                            class="refresh-button"
+                            onclick="refreshSheet()">
+
+                            ↻ Refresh Records
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- REPLACE THE URL BELOW -->
+
+                    <div class="sheet-frame-container">
+
+                        <iframe
+                            id="enquirySheet"
+                            src="https://docs.google.com/spreadsheets/d/1JGz6u3qeSgmui3GTQXCXyg_RmJsGjySoebWYU9dKlcg/edit?usp=sharing"
+                            title="Enquiry Records"
+                            loading="lazy">
+
+                        </iframe>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- WORKFLOW OVERVIEW NOTE -->
+
+            <div class="process-note">
+
+                <strong>Workflow Overview</strong>
+
+                <p>
+                    This automation helps streamline enquiry handling,
+                    reduce repetitive manual work, and maintain
+                    organised records of customer communication.
+                </p>
+
+            </div>
+
+
+            <!-- BACK BUTTON -->
+
+            <div class="back-container">
+
+                <a href="index.html" class="back-button">
+                    ← Back to Home
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- EXISTING N8N WEBHOOK TRIGGER -->
+
+    <script>
+
+        const shouldStartWorkflow =
+            sessionStorage.getItem("startEmailWorkflow");
+
+        if (shouldStartWorkflow === "true") {
+
+            sessionStorage.removeItem("startEmailWorkflow");
+
+            fetch(
+                "https://extending-electron-restored-forecast.trycloudflare.com/webhook/start-email-workflow",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        source: "admin-dashboard",
+                        action: "start-workflow"
+                    })
+                }
+            ).catch(error => {
+                console.error(
+                    "Workflow request failed:",
+                    error
+                );
+            });
+
+        }
+
+
+        // REFRESH GOOGLE SHEETS EMBED
+
+        function refreshSheet() {
+
+            const sheet =
+                document.getElementById("enquirySheet");
+
+            sheet.src = sheet.src;
+
+        }
+
+    </script>
+
+</body>
+
+</html>
