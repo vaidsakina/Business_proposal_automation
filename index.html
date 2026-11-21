@@ -31,12 +31,12 @@
                 Get Started <span>→</span>
             </a>
 
-            <a href="#admin-workflow" class="hero-btn">
+            <a href="workflow.html" class="hero-btn" id="startWorkflowBtn">
                 Start Workflow <span>→</span>
             </a>
         </div>
 
-        <!-- ORIGINAL IMAGE -->
+        <!-- HERO IMAGE -->
         <div class="hero-visual">
             <div class="visual-glow"></div>
 
@@ -50,81 +50,6 @@
     </section>
 
 
-    <!-- WORKFLOW SECTION -->
-    <section class="workflow-section" id="workflow">
-
-        <div class="section-heading reveal">
-            <span class="tag">THE PROCESS</span>
-            <h2>How It <span>Works</span></h2>
-            <p>
-                A simple automated process that takes an enquiry
-                from submission to acknowledgement.
-            </p>
-        </div>
-
-        <div class="workflow-container">
-
-            <div class="workflow-line"></div>
-
-            <div class="workflow-step reveal">
-                <div class="step-number">01</div>
-                <div class="step-icon">📝</div>
-                <h3>Enquiry Received</h3>
-                <p>
-                    A customer submits their details through
-                    the enquiry form.
-                </p>
-                <span class="step-label">FORM SUBMISSION</span>
-            </div>
-
-            <div class="workflow-step reveal">
-                <div class="step-number">02</div>
-                <div class="step-icon">⚙️</div>
-                <h3>Data Processing</h3>
-                <p>
-                    n8n receives the submitted information
-                    and validates the required fields.
-                </p>
-                <span class="step-label">FLASK WEBHOOK</span>
-            </div>
-
-            <div class="workflow-step reveal">
-                <div class="step-number">03</div>
-                <div class="step-icon">🔍</div>
-                <h3>Duplicate Check</h3>
-                <p>
-                    The system checks whether an acknowledgement
-                    has already been sent.
-                </p>
-                <span class="step-label">VALIDATION</span>
-            </div>
-
-            <div class="workflow-step reveal">
-                <div class="step-number">04</div>
-                <div class="step-icon">📧</div>
-                <h3>Email Automation</h3>
-                <p>
-                    n8n triggers an acknowledgement email
-                    if one has not already been sent.
-                </p>
-                <span class="step-label">N8N AUTOMATION</span>
-            </div>
-
-            <div class="workflow-step reveal">
-                <div class="step-number">05</div>
-                <div class="step-icon">📊</div>
-                <h3>Status Tracking</h3>
-                <p>
-                    Enquiry and email statuses are recorded
-                    for the internal dashboard.
-                </p>
-                <span class="step-label">DATABASE</span>
-            </div>
-
-        </div>
-    </section>
-
-
     <!-- ENQUIRY FORM SECTION -->
     <section class="enquiry-section" id="enquiry">
 
@@ -133,6 +58,7 @@
             <div class="form-heading">
                 <span class="tag">GET IN TOUCH</span>
                 <h2>Let's Discuss <span>Your Project</span></h2>
+
                 <p>
                     Share your requirements with us.
                     We'll get back to you as soon as possible.
@@ -145,44 +71,73 @@
 
                     <div class="form-group">
                         <label for="firstName">First Name *</label>
-                        <input type="text" id="firstName"
-                            name="firstName" placeholder="Enter first name" required>
+                        <input
+                            type="text"
+                            id="firstName"
+                            name="firstName"
+                            placeholder="Enter first name"
+                            required
+                        >
                     </div>
 
                     <div class="form-group">
                         <label for="lastName">Last Name *</label>
-                        <input type="text" id="lastName"
-                            name="lastName" placeholder="Enter last name" required>
+                        <input
+                            type="text"
+                            id="lastName"
+                            name="lastName"
+                            placeholder="Enter last name"
+                            required
+                        >
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email Address *</label>
-                        <input type="email" id="email"
-                            name="email" placeholder="example@email.com" required>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="example@email.com"
+                            required
+                        >
                     </div>
 
                     <div class="form-group">
                         <label for="contact">Contact Number *</label>
-                        <input type="tel" id="contact"
-                            name="contact" placeholder="Enter contact number" required>
+                        <input
+                            type="tel"
+                            id="contact"
+                            name="contact"
+                            placeholder="Enter contact number"
+                            required
+                        >
                     </div>
 
                     <div class="form-group">
                         <label for="company">Company / Business Name</label>
-                        <input type="text" id="company"
-                            name="company" placeholder="Enter business name">
+                        <input
+                            type="text"
+                            id="company"
+                            name="company"
+                            placeholder="Enter business name"
+                        >
                     </div>
 
                     <div class="form-group">
                         <label for="city">City *</label>
-                        <input type="text" id="city"
-                            name="city" placeholder="Enter your city" required>
+                        <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            placeholder="Enter your city"
+                            required
+                        >
                     </div>
 
                 </div>
 
 
-                <!-- ENQUIRY TYPE AND BUDGET -->
+                <!-- ENQUIRY TYPE -->
                 <div class="form-grid">
 
                     <div class="form-group">
@@ -200,6 +155,7 @@
 
                 </div>
 
+
                 <button type="submit" class="submit-btn">
                     Submit Enquiry <span>→</span>
                 </button>
@@ -209,28 +165,8 @@
                 </p>
 
             </form>
+
         </div>
-
-
-        <!-- ADMIN WORKFLOW SECTION -->
-        <section class="workflow-section" id="admin-workflow">
-
-            <div class="form-container">
-                <div class="form-heading">
-                    <span class="tag">ADMIN CONTROL</span>
-                    <h2>Start <span>Email Workflow</span></h2>
-                    <p>
-                        Click below to process pending enquiries
-                        and send acknowledgement emails.
-                    </p>
-                </div>
-
-                <button type="button" class="submit-btn" id="startWorkflowBtn">
-                    Start Workflow →
-                </button>
-            </div>
-
-        </section>
 
     </section>
 
@@ -306,50 +242,62 @@
 
         });
 
+               
+// START WORKFLOW AND OPEN ADMIN PAGE
 
-        // ADMIN: START EMAIL WORKFLOW
-        const startButton = document.getElementById("startWorkflowBtn");
+const startWorkflowBtn =
+    document.getElementById("startWorkflowBtn");
 
-        const emailWorkflowWebhook =
-            "https://music-charitable-bandwidth-built.trycloudflare.com/webhook/start-email-workflow";
+startWorkflowBtn.addEventListener("click", async function(event) {
 
-        startButton.addEventListener("click", async function() {
+    event.preventDefault();
 
-            startButton.disabled = true;
+    const originalText = startWorkflowBtn.innerHTML;
 
-            const originalButtonText = startButton.textContent;
+    startWorkflowBtn.style.pointerEvents = "none";
+    startWorkflowBtn.innerHTML = "Starting Workflow...";
 
-            startButton.textContent = "Starting Workflow...";
+    try {
 
-            try {
-
-                const response = await fetch(emailWorkflowWebhook, {
-                    method: "POST"
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Workflow request failed: ${response.status}`);
-                }
-
-                alert("Email workflow started successfully!");
-
-            } catch (error) {
-
-                console.error("Email workflow error:", error);
-
-                alert("Unable to start the email workflow. Please check the n8n workflow and try again.");
-
-            } finally {
-
-                startButton.disabled = false;
-
-                startButton.textContent = originalButtonText;
-
+        const response = await fetch(
+            "https://music-charitable-bandwidth-built.trycloudflare.com/webhook/start-email-workflow",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    source: "admin-dashboard",
+                    action: "start-workflow"
+                })
             }
+        );
 
-        });
+        if (!response.ok) {
+            throw new Error("n8n webhook failed");
+        }
+
+        // Navigate only after n8n accepts the request
+        window.location.href = "workflow.html";
+
+    } catch (error) {
+
+        console.error("Workflow error:", error);
+
+        alert(
+            "Unable to start the workflow. Please check n8n and Cloudflare."
+        );
+
+        startWorkflowBtn.style.pointerEvents = "auto";
+        startWorkflowBtn.innerHTML = originalText;
+
+    }
+
+});
+
 
     </script>
+    
 
 </body>
 </html>
